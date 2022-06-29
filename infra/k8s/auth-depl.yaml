@@ -14,7 +14,7 @@ spec:
     spec: 
       containers:
         - name: auth
-          image: gcr.io/ticketing-dev-354620/auth
+          image: panospd/ticketingauth
 ---
 apiVersion: v1
 kind: Service
