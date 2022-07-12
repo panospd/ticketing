@@ -20,10 +20,17 @@ app.use(signupRouter);
 app.use(errorHandler)
 
 const start =async () => {
-    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth")
+    try {
+        await mongoose.connect("mongodb://auth-mongo-srv:27017/auth")
+        console.log("Connected to mongodb")
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 app.listen(3000, () => {
     console.log("Listening on port 3000!");
 })
+
+start()
 

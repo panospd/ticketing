@@ -26,7 +26,6 @@ router.post(
 
         console.log("Creating a user...")
 
-        throw new DatabaseConnectionError()
         res.send(`Signing up user! Email: ${email}, Password: ${password}`)
     })
 
