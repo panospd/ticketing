@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
-import { body, validationResult } from 'express-validator'
-import { RequestValidationError } from "../errors/request-validation-error"
+import { body } from 'express-validator'
+import { validateRequest } from '../middlewares/validate-request'
 import { User } from '../models/user'
 
 const router = express.Router()
@@ -15,14 +15,9 @@ router.post(
             .trim()
             .notEmpty()
             .withMessage("You must supply a password")
-    ], 
+    ],
+    validateRequest,
     async (req: Request, res: Response) => {
-        var errors = validationResult(req);
-        
-        if (!errors.isEmpty()) {
-            throw new RequestValidationError(errors.array())
-        }
-
         var user = await User.findOne({ email: req.body.email })
 
         res.send("This is signin!")
