@@ -1,6 +1,25 @@
 import { MongoMemoryServer } from "mongodb-memory-server"
 import mongoose from "mongoose"
 import { app } from "../app"
+import request from "supertest"
+
+declare global {
+    var signin: (email?: string) => Promise<string[]>;
+}
+
+global.signin = async (email?: string) => {
+    if (!email) {
+        email = "test@test.com"
+    }
+    const password = "password"
+
+    const res = await request(app)
+        .post("/api/users/signup")
+        .send({ email, password })
+        .expect(201)
+
+    return res.get("Set-Cookie")
+}
 
 let mongo: MongoMemoryServer;
 

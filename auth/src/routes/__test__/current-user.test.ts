@@ -2,16 +2,8 @@ import request from "supertest"
 import { app } from "../../app"
 
 it("responds with details about the current user", async () => {
-    const email = "test@test.com"
-    const authResponse = await request(app)
-        .post("/api/users/signup")
-        .send({
-            email,
-            password: "password"
-        })
-        .expect(201)
-
-    const cookie = authResponse.get("Set-Cookie")
+    const email = "panos@domain.com"
+    const cookie = await signin(email)
 
     const res = await request(app)
         .get("/api/users/current")
