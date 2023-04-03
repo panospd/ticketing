@@ -21,7 +21,10 @@ const Header = ({ currentuser }) => {
     console.log("LINKs", links);
 
     return (
-        <nav className="navbar navbar-light bg-light">
+        <nav
+            style={{ paddingLeft: "4em", paddingRight: "4em" }}
+            className="navbar navbar-light bg-light"
+        >
             <Link className="navbar-brand" href="/">
                 GitTix
             </Link>

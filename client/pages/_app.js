@@ -6,7 +6,9 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
     return (
         <div>
             <Header currentuser={currentUser} />
-            <Component {...pageProps} />
+            <div className="container">
+                <Component {...pageProps} />
+            </div>
         </div>
     );
 };
