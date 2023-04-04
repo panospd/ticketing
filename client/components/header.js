@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 const Header = ({ currentuser }) => {
-    console.log("I am in header");
     const links = [
         !currentuser && { label: "Sign Up", href: "auth/signup" },
         !currentuser && { label: "Sign In", href: "auth/signin" },
@@ -17,8 +16,6 @@ const Header = ({ currentuser }) => {
                 </li>
             );
         });
-
-    console.log("LINKs", links);
 
     return (
         <nav
