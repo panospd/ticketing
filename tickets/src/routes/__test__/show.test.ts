@@ -3,7 +3,7 @@ import { app } from "../../app"
 import mongoose from "mongoose"
 
 it("returns a 404 if ticket is not found", async () => {
-    const nonExistingTicketId = "fdafdsafdasfsa" // new mongoose.Types.ObjectId().toString()
+    const nonExistingTicketId = new mongoose.Types.ObjectId().toString()
     await request(app)
         .get(`/api/tickets/${nonExistingTicketId}`)
         .send()
