@@ -12,7 +12,7 @@ global.signin = (email?: string) => {
     }
 
     const token = jwt.sign({
-        id: "1lk24j124l",
+        id: new mongoose.Types.ObjectId().toHexString(),
         email,
     }, process.env.JWT_KEY!)
 
