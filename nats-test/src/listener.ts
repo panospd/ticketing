@@ -28,3 +28,11 @@ stan.on("connect", () => {
         msg.ack()
     })
 })
+
+stan.on("close", () => {
+    console.log("NATS connection closed!")
+    process.exit();
+})
+
+process.on("SIGINT", () => stan.close());
+process.on("SIGTERM", () => stan.close())
