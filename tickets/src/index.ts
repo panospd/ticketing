@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 import { app } from "./app";
+import { natsWrapper } from "../nats-wrapper";
 
 const start = async () => {
     try {
@@ -12,6 +13,7 @@ const start = async () => {
             throw new Error('MONGO_URI must be defined')
         }
 
+        await natsWrapper.connect("ticketing", "ticket-service-id", "http://nats-srv:4222")
         await mongoose.connect(process.env.MONGO_URI)
         console.log("Connected to MongoDb...")
         app.listen(3000, () => {
