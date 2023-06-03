@@ -22,6 +22,8 @@ global.signin = (email?: string) => {
     return [`session=${base64}`];
 }
 
+jest.mock("../nats-wrapper")
+
 let mongo: MongoMemoryServer;
 
 beforeAll(async () => {
