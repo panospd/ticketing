@@ -2,6 +2,7 @@ import request from "supertest"
 import { app } from "../../app"
 import mongoose from "mongoose"
 import { natsWrapper } from "../../nats-wrapper"
+import { Ticket } from "../../models/ticket"
 
 it("returns a 404 if the provided id does not exist", async () => {
     const id = new mongoose.Types.ObjectId().toHexString()
@@ -104,6 +105,7 @@ it("publishes an event", async () => {
         .expect(201)
 
     expect(natsWrapper.client.publish).toHaveBeenCalledTimes(1);
+    jest.clearAllMocks()
 
     const updateReponse = await request(app)
         .put(`/api/tickets/${res.body.id}`)
@@ -114,5 +116,32 @@ it("publishes an event", async () => {
         })
         .expect(200)
 
-    expect(natsWrapper.client.publish).toHaveBeenCalledTimes(2);
+    expect(natsWrapper.client.publish).toHaveBeenCalledTimes(1);
+})
+
+it("rejects updates if the ticket is reserved", async () => {
+    const cookie = signin();
+    const res = await request(app)
+        .post("/api/tickets")
+        .set("Cookie", cookie)
+        .send({ title: "title", price: 6 })
+        .expect(201)
+
+    expect(natsWrapper.client.publish).toHaveBeenCalledTimes(1);
+    jest.clearAllMocks()
+
+    const ticketInDb = await Ticket.findById(res.body.id)
+    ticketInDb!.set({ orderId: new mongoose.Types.ObjectId().toHexString() })
+    await ticketInDb!.save()
+
+    await request(app)
+        .put(`/api/tickets/${res.body.id}`)
+        .set("Cookie", cookie)
+        .send({
+            title: "title_updated",
+            price: 20
+        })
+        .expect(400)
+
+    expect(natsWrapper.client.publish).not.toHaveBeenCalled()
 })
