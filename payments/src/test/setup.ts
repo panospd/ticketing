@@ -3,16 +3,20 @@ import mongoose from "mongoose"
 import jwt from "jsonwebtoken"
 
 declare global {
-    var signin: (email?: string) => string[];
+    var signin: (id?: string, email?: string) => string[];
 }
 
-global.signin = (email?: string) => {
+global.signin = (id?: string, email?: string) => {
     if (!email) {
         email = "test@test.com"
     }
 
+    if (!id) {
+        id = new mongoose.Types.ObjectId().toHexString()
+    }
+
     const token = jwt.sign({
-        id: new mongoose.Types.ObjectId().toHexString(),
+        id,
         email,
     }, process.env.JWT_KEY!)
 
