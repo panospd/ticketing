@@ -1,4 +1,4 @@
-import { Listener, OrderCreatedEvent, OrderStatus, Subjects } from "@ticketingpd/common";
+import { Listener, OrderCreatedEvent, Subjects } from "@ticketingpd/common";
 import { Message } from "node-nats-streaming";
 import { queueGroupName } from "./queue-group-name";
 import { Order } from "../../models/order";
