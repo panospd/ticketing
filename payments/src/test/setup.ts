@@ -28,7 +28,6 @@ global.signin = (id?: string, email?: string) => {
 
 jest.mock("../nats-wrapper")
 
-
 let mongo: MongoMemoryServer;
 
 beforeAll(async () => {

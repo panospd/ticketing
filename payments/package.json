@@ -10,6 +10,9 @@
     "jest": {
         "preset": "ts-jest",
         "testEnvironment": "node",
+        "setupFiles": [
+            "./src/test/env-setup.ts"
+        ],
         "setupFilesAfterEnv": [
             "./src/test/setup.ts"
         ]
@@ -21,6 +24,7 @@
         "@ticketingpd/common": "^1.0.11",
         "@types/mongoose": "^5.11.97",
         "cookie-session": "^2.0.0",
+        "dotenv": "^16.1.4",
         "express": "^4.18.2",
         "express-async-errors": "^3.1.1",
         "express-validator": "^6.15.0",
