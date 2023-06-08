@@ -30,8 +30,6 @@ router.post("/api/payments", requireAuth, [
         throw new BadRequestError("Cannot pay for a cancelled order")
     }
 
-    console.log("Processing payment!")
-
     await stripe.charges.create({
         amount: order.price * 100,
         currency: "usd",
