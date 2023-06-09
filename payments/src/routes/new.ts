@@ -46,13 +46,13 @@ router.post("/api/payments", requireAuth, [
 
     await payment.save();
 
-    new PaymentCreatedPublisher(natsWrapper.client).publish({
+    await new PaymentCreatedPublisher(natsWrapper.client).publish({
         id: payment.id,
         orderId: payment.orderId,
         stripeId: payment.stripeId
     })
 
-    res.status(201).send({ success: true })
+    res.status(201).send({ id: payment.id })
 })
 
 export { router as createChargeRouter }
