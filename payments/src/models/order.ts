@@ -1,5 +1,5 @@
 import { OrderStatus } from "@ticketingpd/common";
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface OrderAttrs {
