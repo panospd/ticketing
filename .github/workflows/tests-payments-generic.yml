@@ -1,0 +1,12 @@
+on:
+    pull_request:
+        paths:
+            - "payments/**"
+
+jobs:
+    build:
+        name: tests-payments
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: echo "No build required"'

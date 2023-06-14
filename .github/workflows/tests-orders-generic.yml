@@ -1,0 +1,12 @@
+on:
+    pull_request:
+        paths:
+            - "orders/**"
+
+jobs:
+    build:
+        name: tests-orders
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: 'echo "No build required"'
