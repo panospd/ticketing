@@ -1,7 +1,4 @@
-on:
-    pull_request:
-        paths:
-            - "payments/**"
+on: pull_request
 
 jobs:
     build:

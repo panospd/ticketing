@@ -1,7 +1,4 @@
-on:
-    pull_request:
-        paths:
-            - "tickets/**"
+on: pull_request
 
 jobs:
     build:
