@@ -7,4 +7,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - run: cd payments/src/test && touch .env && echo STRIPE_KEY=${{ secrets.STRIPE_KEY }} >> .env && cat .env && cdd ../../ && npm i && npm run test:ci
+            - run: cd payments/src/test && touch .env && echo STRIPE_KEY=${{ secrets.STRIPE_KEY }} >> .env && cat .env && cd ../../ && npm i && npm run test:ci
