@@ -6,6 +6,5 @@ jobs:
         name: tests-payments
         runs-on: ubuntu-latest
         steps:
-            - echo stripekey - ${{ secrets.STRIPE_KEY }}
             - uses: actions/checkout@v2
-            - run: cd payments && npm i && npm run test:ci
+            - run: echo stripekey - ${{ secrets.STRIPE_KEY }} && cd payments && npm i && npm run test:ci
