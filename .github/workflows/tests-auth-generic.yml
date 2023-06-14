@@ -1,9 +1,6 @@
 name: tests-auth
 
-on:
-    pull_request:
-        paths:
-            - "auth/**"
+on: pull_request
 
 jobs:
     build:
@@ -11,4 +8,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - run: cd auth && npm i && npm run test:ci
+            - run: 'echo "No build required"'
