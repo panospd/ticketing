@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - run: |
+            - run:
               cd payments/src/test
               touch .env
               echo STRIPE_KEY=${{ secrets.STRIPE_KEY }} >> .env
